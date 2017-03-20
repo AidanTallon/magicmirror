@@ -1,3 +1,14 @@
-<%= erb :calendar %>
-<%= erb :message %>
-<%= erb :weather %>
+<div class="row">
+  <div class="col-md-4">
+    <%= erb :weather %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+  <%= erb :message %>
+</div>
+<div class="row">
+  <div class="col-md-4 col-md-offset-8">
+    <%=erb :calendar %>
+  </div>
+</div>
