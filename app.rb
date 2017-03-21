@@ -1,10 +1,11 @@
 require 'sinatra'
 require 'dotenv/load'
 require 'forecast_io'
+require 'geocoder'
 require 'geoip'
 require 'httparty'
-require './lib/forecast.rb'
-require './lib/location.rb'
+
+Dir[File.join(Dir.pwd, 'lib/*.rb')].each { |f| require f }
 
 require 'pry'
 

@@ -1,5 +1,8 @@
 class Forecast
-  def initialize
-    l = Location.fetch
+  attr_reader :latitude, :longitude
+  
+  def initialize(lat, lon)
+    @latitude = lat
+    @longitude = lon
   end
 end
