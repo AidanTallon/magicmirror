@@ -1,8 +1,11 @@
 <div id='weather'>
   <p>Weather</p>
-  <% 
-    location = Location.new %>
+  <%
+      location = Location.new
+      forecast = Forecast.new location
+  %>
   <p>Latitude: <%= location.latitude %></p>
   <p>Longitude: <%= location.longitude %></p>
-  <%  %>
+  <p>Location: <%= "#{location.country}: #{location.city}" %></p>
+  <p>Weather: <%= forecast.current[:summary] %></p>
 </div>
