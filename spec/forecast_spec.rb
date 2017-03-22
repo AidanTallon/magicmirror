@@ -1,6 +1,6 @@
 describe Forecast do
-  it 'should initialize given an instance of Location' do
-    @forecast = Forecast.new Location.new latitude: 53, longitude: -2
+  it 'should initialize given an instance of Location and an api key' do
+    @forecast = Forecast.new Location.new(latitude: 53, longitude: -2), ENV['FORECAST_IO_API_KEY']
     expect(@forecast.latitude).to eq 53
     expect(@forecast.longitude).to eq -2
     expect(@forecast.country).to eq 'United Kingdom'

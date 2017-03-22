@@ -21,11 +21,13 @@ class Location
 
   def get_location_data(lat, lon)
     location_data = Geocoder.search("#{lat}, #{lon}").first
-    location_data.data['address_components'].each do |d|
-      if d['types'].include? 'postal_town'
-        @city = d['long_name']
-      elsif d['types'].include? 'country'
-        @country = d['long_name']
+    if location_data
+      location_data.data['address_components'].each do |d|
+        if d['types'].include? 'postal_town'
+          @city = d['long_name']
+        elsif d['types'].include? 'country'
+          @country = d['long_name']
+        end
       end
     end
     @city = 'unknown' if @city.nil?

@@ -1,11 +1,13 @@
 <div id='weather'>
   <p>Weather</p>
   <%
-      location = Location.new
-      forecast = Forecast.new location
+      location = Location.new latitude: AppConfig.latitude, longitude: AppConfig.longitude
+      forecast = Forecast.new location, ENV['FORECASE_IO_API_KEY']
   %>
   <p>Latitude: <%= location.latitude %></p>
   <p>Longitude: <%= location.longitude %></p>
   <p>Location: <%= "#{location.country}: #{location.city}" %></p>
   <p>Weather: <%= forecast.current[:summary] %></p>
+  <p>Weather Icon: <%= forecast.current[:icon] %></p>
+  <p>Temperature: <%= forecast.current[:temperature] %></p>
 </div>
