@@ -2,7 +2,7 @@
   <p>Weather</p>
   <%
       location = Location.new latitude: AppConfig.latitude, longitude: AppConfig.longitude
-      forecast = Forecast.new location, ENV['FORECASE_IO_API_KEY']
+      forecast = Forecast.new location, ENV['FORECAST_IO_API_KEY']
   %>
   <p>Latitude: <%= location.latitude %></p>
   <p>Longitude: <%= location.longitude %></p>
