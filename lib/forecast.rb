@@ -12,7 +12,7 @@ class Forecast
   end
 
   def fetch
-    data = ForecastIO.forecast @latitude, @longitude
+    data = ForecastIO.forecast @latitude, @longitude, { params: { units: 'si', excludes: 'minutely,hourly,daily,alerts,flags' } }
     if data
       @current =
       {

@@ -1,13 +1,15 @@
-<div id='weather'>
-  <p>Weather</p>
-  <%
-      location = Location.new latitude: AppConfig.latitude, longitude: AppConfig.longitude
-      forecast = Forecast.new location, ENV['FORECAST_IO_API_KEY']
-  %>
-  <p>Latitude: <%= location.latitude %></p>
-  <p>Longitude: <%= location.longitude %></p>
-  <p>Location: <%= "#{location.country}: #{location.city}" %></p>
-  <p>Weather: <%= forecast.current[:summary] %></p>
-  <p>Weather Icon: <%= forecast.current[:icon] %></p>
-  <p>Temperature: <%= forecast.current[:temperature] %></p>
+<div class="container" style="width: 200px;">
+  <div class="row">
+    <h3><%= forecast.current[:summary] %></h3>
+    <h4 style="text-align: right"><%= forecast.current[:temperature] %> °C</h4>
+  </div>
+  <div class="row" style="position: absolute; width: 300px;">
+    <div>
+      <div>
+        <h3><%= location.city %></h3>
+        <h4><%= location.country %></h4>
+      </div>
+      <img style="position: absolute; right: 0px; top: 0px;" src='img/<%=forecast.current[:icon]%>_icon.svg' />
+    </div>
+  </div>
 </div>

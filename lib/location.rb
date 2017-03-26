@@ -3,7 +3,10 @@ class Location
   attr_reader :latitude, :longitude, :country, :city
   base_uri 'https://freegeoip.net'
 
-  def initialize(params = {})
+  def initialize
+  end
+
+  def fetch(params = {})
     if params[:latitude] and params[:longitude]
       @latitude = params[:latitude]
       @longitude = params[:longitude]

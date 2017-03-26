@@ -5,3 +5,5 @@ Requires environment variables in .env file
 GOOGLE_MAPS_API_KEY```
 
 Author: Aidan Tallon
+
+Weather icons taken from http://www.danvierich.de/weather/
