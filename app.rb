@@ -16,9 +16,10 @@ end
 
 get '/weather' do
   content_type :html
-  location = Location.new
-  location.fetch latitude: AppConfig.latitude, longitude: AppConfig.longitude
-  forecast = Forecast.new location, ENV['FORECAST_IO_API_KEY']
+  location = Location.new latitude: AppConfig.latitude, longitude: AppConfig.longitude
+  location.fetch
+  forecast = Forecast.new latitude: location.latitude, longitude: location.longitude, api_key: ENV['FORECAST_IO_API_KEY']
+  forecast.fetch
   erb :weather, :locals => 
     {
       location: location,

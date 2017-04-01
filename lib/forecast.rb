@@ -1,17 +1,15 @@
 class Forecast
-  attr_reader :latitude, :longitude, :country, :city, :current
+  attr_reader :latitude, :longitude, :current, :api_key
   require 'forecast_io'
 
-  def initialize(location, api_key)
-    @latitude = location.latitude
-    @longitude = location.longitude
-    @country = location.country
-    @city = location.city
-    ForecastIO.api_key = api_key
-    fetch
+  def initialize(latitude:, longitude:, api_key:)
+    @latitude = latitude
+    @longitude = longitude
+    @api_key = api_key
   end
 
   def fetch
+    ForecastIO.api_key = @api_key
     data = ForecastIO.forecast @latitude, @longitude, { params: { units: 'si', excludes: 'minutely,hourly,daily,alerts,flags' } }
     if data
       @current =
@@ -23,9 +21,9 @@ class Forecast
     else
       @current =
       {
-        summary:      "error",
-        icon:         "error",
-        temperature:  "error"
+        summary:      nil,
+        icon:         nil,
+        temperature:  nil
       }
     end
   end

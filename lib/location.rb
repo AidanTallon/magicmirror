@@ -3,17 +3,18 @@ class Location
   attr_reader :latitude, :longitude, :country, :city
   base_uri 'https://freegeoip.net'
 
-  def initialize
+  def initialize(latitude: nil, longitude: nil)
+    @latitude = latitude
+    @longitude = longitude
+    @country = nil
+    @city = nil
   end
 
-  def fetch(params = {})
-    if params[:latitude] and params[:longitude]
-      @latitude = params[:latitude]
-      @longitude = params[:longitude]
-    else
+  def fetch
+    if @latitude.nil? or @longitude.nil?
       get_location_from_ip
     end
-    get_location_data(@latitude, @longitude)
+    get_location_data
   end
 
   def get_location_from_ip
@@ -22,8 +23,8 @@ class Location
     @longitude = loc['longitude']
   end
 
-  def get_location_data(lat, lon)
-    location_data = Geocoder.search("#{lat}, #{lon}").first
+  def get_location_data
+    location_data = Geocoder.search("#{@latitude}, #{@longitude}").first
     if location_data
       location_data.data['address_components'].each do |d|
         if d['types'].include? 'postal_town'
