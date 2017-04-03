@@ -1,12 +1,8 @@
 generic:
   - generic message1
-  - generic message2
 morning:
   - morning message1
-  - morning message2
 afternoon:
   - afternoon message1
-  - afternoon message2
 evening:
   - evening message1
-  - evening message2
