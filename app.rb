@@ -9,6 +9,9 @@ Dir[File.join(Dir.pwd, 'lib/*.rb')].each { |f| require f }
 
 require 'pry'
 require 'json'
+require 'yaml'
+
+message_helper = Message.new YAML.load_file './lib/message_data.yml'
 
 get '/' do
   erb :index
@@ -21,8 +24,16 @@ get '/weather' do
   forecast = Forecast.new latitude: location.latitude, longitude: location.longitude, api_key: ENV['FORECAST_IO_API_KEY']
   forecast.fetch
   erb :weather, :locals => 
-    {
-      location: location,
-      forecast: forecast
-    }
+  {
+    location: location,
+    forecast: forecast
+  }
+end
+
+get '/message' do
+  content_type :html
+  erb :message, :locals =>
+  {
+    message: message_helper.get
+  }
 end

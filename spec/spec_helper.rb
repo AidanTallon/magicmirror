@@ -1,9 +1,9 @@
 require './app.rb'
 require 'httparty'
 require 'pry'
-require './lib/location.rb'
+require 'timecop'
 
-Dir[File.join(Dir.pwd, 'lib/*')].each { |f| require f }
+Dir[File.join(Dir.pwd, 'lib/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
