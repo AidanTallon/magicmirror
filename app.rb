@@ -8,8 +8,7 @@ require 'httparty'
 Dir[File.join(Dir.pwd, 'lib/*.rb')].each { |f| require f }
 
 require 'pry'
-require 'json'
-require 'yaml'
+require 'json'require 'yaml'
 
 message_helper = Message.new YAML.load_file './lib/message_data.yml'
 
@@ -35,5 +34,13 @@ get '/message' do
   erb :message, :locals =>
   {
     message: message_helper.get
+  }
+end
+
+get '/calendar' do
+  content_type :html
+  erb :calendar, :locals =>
+  {
+    calendar: Calendar.new
   }
 end
